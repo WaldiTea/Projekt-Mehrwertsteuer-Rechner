@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/styles/css/style.css">
+    <title>Mehrwertsteuer-Rechner</title>
+  </head>
+  <body class="body">
+    <h1>Mehrwertsteuer-Rechner</h1>
+    <form action="" onsubmit="return false">
+      <div class="container">
+        <p>Was soll berechnet werden?</p>
+        <div class="check-wrapper">
+          <input type="radio" name="Mwst" id="input-mwst-up" checked>
+          <label for="input-mwst-up">Mehrwertsteuer aufschlagen (Netto zu Brutto)</label>
+        </div>
+        <div class="check-wrapper">
+          <input type="radio" name="Mwst" id="input-mwst-down" unchecked>
+          <label for="input-mwst-down">Mehrwertsteuer abziehen (Brutto zu Netto)</label>
+        </div>
+      </div>
+      <div class="container">
+        <p>Mehrwertsteuersatz</p>
+        <input class="mwsts" type="radio" name="MwSts" id="nineteen-percent" checked>
+        <label for="nineteen-percent">19%</label>
+        <input class="mwsts" type="radio" name="MwSts" id="seven-percent" unchecked>
+        <label for="seven-percent">7%</label>
+      </div>
+      <div class="container">
+        <p><span id="txt-mwst-on">Betrag</span> in Euro</p>
+        <div>
+          <input class="amount" type="number" name="amount" step="0.01" id="input-amount">
+        </div>
+      </div>
+      <input class="btn" type="submit" value="BERECHNEN" onclick="calc()">
+      <p class="result">Ergebnis</p>
+      <div class="container">
+        <p>Mehrwertsteuerbetrag</p>
+        <p class="full-amount"><span id="mwst-out">0,00</span>€</p>
+      </div>
+      <div class="container">
+        <p id="txt-brutto-netto">Endbetrag</p>
+        <p class="full-amount"><span id="bru-net-out">0,00</span>€</p>
+      </div>
+    </form>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
