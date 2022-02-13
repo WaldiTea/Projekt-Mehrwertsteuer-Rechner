@@ -13,28 +13,28 @@
       <div class="container">
         <p>Was soll berechnet werden?</p>
         <div class="check-wrapper">
-          <input type="radio" name="Mwst" id="input-mwst-up" checked>
+          <input type="radio" name="Mwst" value="mwstUp" checked>
           <label for="input-mwst-up">Mehrwertsteuer aufschlagen (Netto zu Brutto)</label>
         </div>
         <div class="check-wrapper">
-          <input type="radio" name="Mwst" id="input-mwst-down" unchecked>
+          <input type="radio" name="Mwst" value="mwstDown">
           <label for="input-mwst-down">Mehrwertsteuer abziehen (Brutto zu Netto)</label>
         </div>
       </div>
       <div class="container">
         <p>Mehrwertsteuersatz</p>
-        <input class="mwsts" type="radio" name="MwSts" id="nineteen-percent" checked>
+        <input class="mwsts" type="radio" name="MwSts" value="19" id="nineteen-percent" checked>
         <label for="nineteen-percent">19%</label>
-        <input class="mwsts" type="radio" name="MwSts" id="seven-percent" unchecked>
+        <input class="mwsts" type="radio" name="MwSts" value="7" id="seven-percent">
         <label for="seven-percent">7%</label>
       </div>
       <div class="container">
         <p><span id="txt-mwst-on">Betrag</span> in Euro</p>
         <div>
-          <input class="amount" type="number" name="amount" step="0.01" id="input-amount">
+          <input class="amount" type="number" name="amount" step="0.01" id="input-amount" required>
         </div>
       </div>
-      <input class="btn" type="submit" value="BERECHNEN" onclick="calc()">
+      <input class="btn" type="submit" value="BERECHNEN" onclick="triggerCalc()">
       <p class="result">Ergebnis</p>
       <div class="container">
         <p>Mehrwertsteuerbetrag</p>

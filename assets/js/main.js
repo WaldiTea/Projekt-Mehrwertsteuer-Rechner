@@ -1,47 +1,38 @@
-const mwstUpElem = document.getElementById('input-mwst-up');
-const nineteenPercentElem = document.getElementById('nineteen-percent');
 const txtMwstOnElem = document.getElementById('txt-mwst-on');
 const amountElem = document.getElementById('input-amount');
 const mwstOutElem = document.getElementById('mwst-out');
 const txtBruNetElem = document.getElementById('txt-brutto-netto');
 const bruNetOutElem = document.getElementById('bru-net-out');
 
-function calc() {
-  var inputAmount = Number(amountElem.value);
-  var mwst, fullAmount;
+function triggerCalc() {
+  var mwsts = Number(document.querySelector('input[name="MwSts"]:checked').value);
+  var mwstUp = document.querySelector('input[name="Mwst"]:checked').value;
 
-  function print() {
-    mwstOutElem.innerHTML = mwst.toFixed(2).replace('.', ',');
-    bruNetOutElem.innerHTML = fullAmount.toFixed(2).replace('.', ',');
-  }
+  if(mwstUp === 'mwstUp') {
+    var netTxt = 'Nettobetrag (Preis ohne Mehrwertsteuer)';
+    var grossTxt = 'Bruttobetrag (Endpreis)';
 
-  if(mwstUpElem.checked) {
-    txtMwstOnElem.innerHTML = 'Nettobetrag (Preis ohne Mehrwertsteuer)';
-    txtBruNetElem.innerHTML = 'Bruttobetrag (Endpreis)';
-
-    if(nineteenPercentElem.checked) {
-      mwst = inputAmount * (19 / 100);
-      fullAmount = inputAmount + mwst;
-      print();
-    } 
-    else {
-      mwst = inputAmount * (7 / 100);
-      fullAmount = inputAmount + mwst;
-      print();
-    }
+    calc(netTxt, grossTxt, mwsts, 100);
 
   } else {
-    txtMwstOnElem.innerHTML = 'Bruttobetrag (Preis inklusive Mehrwertsteuer)';
-    txtBruNetElem.innerHTML = 'Nettobetrag';
+    var netTxt = 'Bruttobetrag (Preis inklusive Mehrwertsteuer)';
+    var grossTxt = 'Nettobetrag';
 
-    if(nineteenPercentElem.checked) {
-      mwst = inputAmount * (19 / 119);
-      fullAmount = inputAmount - mwst;
-      print();
-    } else {
-      mwst = inputAmount * (7 / 107);
-      fullAmount = inputAmount - mwst;
-      print();
-    }
+    calc(netTxt, grossTxt, mwsts, (100 + mwsts));
   }
+}
+
+function calc (arg1, arg2, mwsts, tax) {
+  txtMwstOnElem.innerHTML = arg1;
+  txtBruNetElem.innerHTML = arg2;
+  var inputAmount = Number(amountElem.value);
+
+  var mwst = inputAmount * (mwsts / tax);
+  var fullAmount = inputAmount + mwst;
+  print(mwst, fullAmount);
+}
+
+function print(mwst, fullAmount) {
+  mwstOutElem.innerHTML = mwst.toFixed(2).replace('.', ',');
+  bruNetOutElem.innerHTML = fullAmount.toFixed(2).replace('.', ',');
 }
